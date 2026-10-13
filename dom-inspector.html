@@ -1,3 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspector del Árbol DOM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-gray-100 font-sans min-h-screen">
+
+    <!-- Navegación -->
+    <nav class="bg-blue-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">Árbol del DOM Visual</h1>
+            <a href="index.html" class="bg-white text-blue-600 px-4 py-1 rounded font-semibold hover:bg-gray-200">Volver al Inicio</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-6 flex flex-col items-center">
+        <h2 class="text-2xl font-bold mb-8 text-blue-300">Representación Jerárquica de index.html</h2>
+        
+        <!-- Contenedor del Diagrama -->
+        <div class="bg-slate-800 p-8 rounded-xl shadow-2xl border border-slate-700 w-full max-w-4xl overflow-auto">
+            <pre class="mermaid text-center">
 graph TD
 
 %% Definición de Nodos
@@ -18,3 +42,15 @@ BODY --- MAIN
 %% Estilos de Nodos
 classDef default fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#fff,rx:10px,ry:10px,font-family:monospace,font-size:16px;
 linkStyle default stroke:#64748b,stroke-width:2px;
+            </pre>
+        </div>
+        
+    </main>
+
+    <!-- Script de Mermaid.js para renderizar el diagrama -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    </script>
+</body>
+</html>
