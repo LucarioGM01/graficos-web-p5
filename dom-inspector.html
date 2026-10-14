@@ -24,7 +24,6 @@
             <pre class="mermaid text-center">
 graph TD
 
-%% Definición de Nodos
 HTML(["&lt;html&gt;"])
 HEAD(["&lt;head&gt;"])
 BODY(["&lt;body&gt;"])
@@ -32,19 +31,16 @@ META(["&lt;meta&gt;<br>&lt;title&gt;"])
 HEADER(["&lt;nav&gt; (Header)"])
 MAIN(["&lt;main id='...'&gt;<br>&lt;canvas&gt;"])
 
-%% Conexiones
 HTML --- HEAD
 HTML --- BODY
 HEAD --- META
 HEAD --- HEADER
 BODY --- MAIN
 
-%% Estilos de Nodos
 classDef default fill:#1e293b,stroke:#38bdf8,stroke-width:2px,color:#fff,rx:10px,ry:10px,font-family:monospace,font-size:16px;
 linkStyle default stroke:#64748b,stroke-width:2px;
             </pre>
         </div>
-        
     </main>
 
     <!-- Script de Mermaid.js para renderizar el diagrama -->
@@ -53,3 +49,4 @@ linkStyle default stroke:#64748b,stroke-width:2px;
         mermaid.initialize({ startOnLoad: true, theme: 'dark' });
     </script>
 </body>
+</html>
