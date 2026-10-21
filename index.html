@@ -10,157 +10,171 @@
 <body class="bg-gray-100 text-gray-800 font-sans">
 
     <!-- Navegación -->
-    <nav class="bg-blue-600 text-white p-4 sticky top-0 z-50">
+    <nav class="bg-blue-600 text-white p-4 sticky top-0 z-50 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold">Portafolio Web</h1>
-            <ul class="flex space-x-6">
-                <li><a href="#teoria" class="hover:underline">Teoría</a></li>
-                <li><a href="#proyectos" class="hover:underline">Proyectos</a></li>
-                <li><a href="dom-inspector.html" class="bg-white text-blue-600 px-4 py-1 rounded font-semibold hover:bg-gray-200">Ver Árbol DOM</a></li>
+            <h1 class="text-xl font-bold">Portafolio de Animaciones</h1>
+            <ul class="flex space-x-6 items-center">
+                <li><a href="#teoria" class="hover:text-blue-200 transition">Teoría</a></li>
+                <li><a href="#proyectos" class="hover:text-blue-200 transition">Proyectos</a></li>
+                <li><a href="dom-inspector.html" class="bg-white text-blue-600 px-4 py-1 rounded font-semibold hover:bg-gray-200 transition">Ver Árbol DOM</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="container mx-auto p-6">
         <!-- Sección de Teoría -->
-        <section id="teoria" class="mb-12 bg-white p-6 rounded-lg shadow">
-            <h2 class="text-3xl font-bold mb-4 border-b pb-2">Sección Informativa</h2>
+        <section id="teoria" class="mb-12 bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+            <h2 class="text-3xl font-bold mb-4 border-b pb-2 text-gray-800">Sección Informativa</h2>
             
             <h3 class="text-xl font-semibold mt-4 text-blue-600">1. La etiqueta HTML &lt;canvas&gt; y contextos 2D</h3>
-            <p class="mt-2 text-justify">
+            <p class="mt-2 text-justify leading-relaxed text-gray-600">
                 La etiqueta <code>&lt;canvas&gt;</code> de HTML5 proporciona un área en la página donde se pueden dibujar gráficos de forma dinámica mediante JavaScript. Por sí sola, la etiqueta es solo un contenedor transparente. Para dibujar en ella, se utiliza una API de renderizado solicitando un "contexto". El contexto <code>"2d"</code> permite trazar formas primitivas, líneas, colores, texto e imágenes mediante un sistema de coordenadas (x, y) donde el origen (0,0) está en la esquina superior izquierda.
             </p>
 
             <h3 class="text-xl font-semibold mt-6 text-blue-600">2. Fundamentos de la librería p5.js</h3>
-            <p class="mt-2 text-justify">
+            <p class="mt-2 text-justify leading-relaxed text-gray-600">
                 <strong>p5.js</strong> es una librería de JavaScript diseñada para hacer que la programación visual sea accesible. Abstrae la complejidad del contexto 2D del canvas tradicional. Sus fundamentos se basan en dos funciones principales: 
-                <br>• <code>setup()</code>: Se ejecuta una sola vez al iniciar el programa. Se usa para configurar el lienzo (ej. <code>createCanvas()</code>) y definir valores iniciales.
-                <br>• <code>draw()</code>: Se ejecuta en un bucle continuo (por defecto a 60 FPS), lo que permite crear animaciones cuadro por cuadro.
+                <br><br>• <strong><code>setup()</code></strong>: Se ejecuta una sola vez al iniciar el programa. Se usa para configurar el lienzo (ej. <code>createCanvas()</code>) y definir variables iniciales.
+                <br>• <strong><code>draw()</code></strong>: Se ejecuta en un bucle continuo (por defecto a 60 FPS), actualizando las posiciones y redibujando el fondo, lo que permite crear animaciones cuadro por cuadro.
             </p>
         </section>
 
-        <!-- Sección de Proyectos -->
+        <!-- Sección de Proyectos Animados -->
         <section id="proyectos" class="mb-12">
-            <h2 class="text-3xl font-bold mb-6">Mis Dibujos y Animaciones</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Mis Animaciones</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center">
-                    <h3 class="font-bold mb-2">1. Rana</h3>
-                    <div id="rana-container"></div>
+                <!-- 1. El sol que explota -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center">
+                    <h3 class="font-bold text-lg mb-3 text-gray-700">1. El sol que explota</h3>
+                    <div id="sol-container" class="rounded overflow-hidden border border-gray-300"></div>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center">
-                    <h3 class="font-bold mb-2">2. Dientes de conejo</h3>
-                    <div id="conejo-container"></div>
+                <!-- 2. Nubes que se separan -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center">
+                    <h3 class="font-bold text-lg mb-3 text-gray-700">2. Nubes que se separan</h3>
+                    <div id="nubes-container" class="rounded overflow-hidden border border-gray-300"></div>
                 </div>
 
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center">
-                    <h3 class="font-bold mb-2">3. ¿Qué hay de cena?</h3>
-                    <div id="cena-container"></div>
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center">
-                    <h3 class="font-bold mb-2">4. Día nevado soleado</h3>
-                    <div id="dia-container"></div>
-                </div>
-
-                <div class="bg-white p-4 rounded-lg shadow flex flex-col items-center">
-                    <h3 class="font-bold mb-2">5. Muñeco de nieve</h3>
-                    <div id="nieve-container"></div>
+                <!-- 3. Estrella fugaz -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center">
+                    <h3 class="font-bold text-lg mb-3 text-gray-700">3. Estrella fugaz (Cañón)</h3>
+                    <div id="estrella-container" class="rounded overflow-hidden border border-gray-300"></div>
                 </div>
 
             </div>
         </section>
     </main>
 
-    <!-- Scripts de p5.js en Modo Instancia -->
+    <!-- Scripts de p5.js en Modo Instancia para Animaciones -->
     <script>
-        // 1. Rana
-        new p5((p) => {
-            p.setup = () => { p.createCanvas(300, 300).parent('rana-container'); p.noLoop(); };
-            p.draw = () => {
-                p.background(220);
-                let x = 150, y = 170;
-                p.noStroke();
-                p.fill(30, 204, 91);
-                p.ellipse(x, y, 200, 100); 
-                p.ellipse(x - 50, y - 50, 40, 40); 
-                p.ellipse(x + 50, y - 50, 40, 40); 
-                p.fill(255);
-                p.ellipse(x - 50, y - 50, 30, 30); 
-                p.ellipse(x + 50, y - 50, 30, 30); 
-                p.fill(0);
-                p.ellipse(x, y + 10, 130, 40); 
-                p.rect(x - 55, y - 55, 10, 10); 
-                p.rect(x + 45, y - 55, 10, 10); 
-            };
-        });
-
-        // 2. Dientes de conejo (Bucky)
-        new p5((p) => {
-            let tamanoOjo = 15;
-            p.setup = () => { p.createCanvas(300, 300).parent('conejo-container'); p.noLoop(); };
-            p.draw = () => {
-                p.background(220);
-                p.ellipse(100, 70, 60, 120); 
-                p.ellipse(200, 70, 60, 120); 
-                p.ellipse(150, 170, 150, 150); 
-                p.fill(0);
-                p.ellipse(120, 150, tamanoOjo, tamanoOjo); 
-                p.ellipse(180, 150, tamanoOjo, tamanoOjo); 
-                p.line(100, 200, 200, 200); 
-                p.noFill();
-                p.rect(135, 200, 15, 30); 
-                p.rect(150, 200, 15, 30); 
-            };
-        });
-
-        // 3. ¿Qué hay de cena? (Taco)
-        new p5((p) => {
-            p.setup = () => { p.createCanvas(300, 300).parent('cena-container'); p.noLoop(); };
-            p.draw = () => {
-                p.background(186, 145, 20); 
-                p.stroke(150); p.fill(245); p.ellipse(150, 150, 250, 250); 
-                p.stroke(200); p.fill(255); p.ellipse(150, 150, 200, 200); 
-                p.stroke(200, 150, 50); p.fill(242, 212, 107); p.ellipse(150, 150, 180, 90); 
-                p.stroke(60, 30, 0); p.fill(102, 51, 0); p.ellipse(150, 150, 150, 50); 
-                p.noStroke(); p.fill(220, 20, 20); 
-                p.rect(125, 145, 10, 10); p.rect(150, 140, 10, 10); p.rect(110, 135, 10, 10); p.rect(165, 148, 10, 10);
-            };
-        });
-
-        // 4. Día nevado soleado (Animación Sol)
+        // 1. El sol que explota
         new p5((p) => {
             let sunSize = 30;
-            p.setup = () => { p.createCanvas(300, 300).parent('dia-container'); };
+            p.setup = () => { p.createCanvas(350, 350).parent('sol-container'); };
             p.draw = () => {
-                p.background(82, 222, 240);
-                sunSize += 0.5;
-                if(sunSize > 400) sunSize = 30; 
                 p.noStroke();
+                p.background(82, 222, 240); // Cielo
+                
+                sunSize += 1; // Crece 1 px por fotograma
+                if(sunSize > 450) sunSize = 30; // Reinicio para la web
+                
                 p.fill(255, 204, 0);
-                p.ellipse(150, 250, sunSize, sunSize);
+                p.ellipse(175, 250, sunSize, sunSize); // Sol
+                
                 p.fill(76, 168, 67);
-                p.rect(0, 250, 300, 100);
+                p.rect(0, 250, 350, 100); // Tierra
             };
         });
 
-        // 5. Muñeco de nieve
+        // 2. Nubes que se separan
         new p5((p) => {
-            p.setup = () => { p.createCanvas(300, 300).parent('nieve-container'); p.noLoop(); };
+            let leftX = 130;
+            let rightX = 220;
+            p.setup = () => { p.createCanvas(350, 350).parent('nubes-container'); };
             p.draw = () => {
-                p.background(150, 200, 255);
                 p.noStroke();
-                p.fill(255);
-                p.rect(0, 250, 300, 50); 
-                p.ellipse(150, 230, 100, 100); 
-                p.ellipse(150, 160, 70, 70);   
-                p.ellipse(150, 100, 50, 50);   
-                p.fill(0);
-                p.ellipse(140, 95, 5, 5); 
-                p.ellipse(160, 95, 5, 5); 
+                p.background(135, 206, 235); // Cielo azul
+                
+                // Sol en el centro
+                p.fill(255, 220, 0);
+                p.ellipse(175, 175, 100, 100);
+                
+                p.fill(255); // Color blanco para nubes
+                
+                // Nube izquierda (moviéndose a la izquierda)
+                p.ellipse(leftX, 175, 80, 60);
+                p.ellipse(leftX - 20, 185, 60, 50);
+                p.ellipse(leftX + 20, 185, 60, 50);
+                
+                // Nube derecha (moviéndose a la derecha)
+                p.ellipse(rightX, 175, 80, 60);
+                p.ellipse(rightX - 20, 185, 60, 50);
+                p.ellipse(rightX + 20, 185, 60, 50);
+                
+                // Animación
+                leftX -= 0.5;
+                rightX += 0.5;
+                
+                // Reinicio para la web
+                if (leftX < -50) {
+                    leftX = 130;
+                    rightX = 220;
+                }
+            };
+        });
+
+        // 3. Estrella fugaz (Con cañón y ciudad)
+        new p5((p) => {
+            // Variables iniciales de tu código
+            let xPos = 0;
+            let yPos = 50;
+            let xPos2 = 350;
+            let yPos2 = 100;
+            let balaX = 40;
+            let balaY = 300;
+
+            p.setup = () => { p.createCanvas(350, 350).parent('estrella-container'); };
+            p.draw = () => {
+                p.noStroke();
+                // Fondo
+                p.background(29, 40, 115);
+                
+                // Edificios
+                p.fill(20, 20, 40);
+                p.rect(30, 200, 80, 150);
+                p.rect(120, 150, 90, 200);
+                p.rect(230, 230, 70, 120);
+                p.rect(300, 130, 80, 220);
+                
+                // Cañón
+                p.fill(100, 100, 100);
+                p.rect(0, 300, 50, 50);
+                p.rect(20, 280, 40, 30);
+                
+                // Bala
                 p.fill(255, 100, 0);
-                p.triangle(150, 100, 170, 105, 150, 110); 
+                p.ellipse(balaX, balaY, 12, 12);
+                balaX += 4;
+                balaY -= 3;
+                
+                // Estrellas Fugaces
+                p.fill(255, 242, 0);
+                p.ellipse(xPos, yPos, 10, 10);
+                xPos += 5;
+                yPos += 3;
+                
+                p.fill(200, 255, 255);
+                p.ellipse(xPos2, yPos2, 8, 8);
+                xPos2 -= 6;
+                yPos2 += 4;
+
+                // Reinicio para que la animación sea infinita en la web
+                if (balaX > 400 || xPos > 400) {
+                    xPos = 0; yPos = 50;
+                    xPos2 = 350; yPos2 = 100;
+                    balaX = 40; balaY = 300;
+                }
             };
         });
     </script>
