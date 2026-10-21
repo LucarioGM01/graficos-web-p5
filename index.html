@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyectos Khan Academy - p5.js</title>
+    <title>Portafolio Khan Academy - p5.js</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
 </head>
@@ -12,7 +12,7 @@
     <!-- Navegación -->
     <nav class="bg-blue-600 text-white p-4 sticky top-0 z-50 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold">Portafolio de Animaciones</h1>
+            <h1 class="text-xl font-bold">Portafolio Web interactivo</h1>
             <ul class="flex space-x-6 items-center">
                 <li><a href="#teoria" class="hover:text-blue-200 transition">Teoría</a></li>
                 <li><a href="#proyectos" class="hover:text-blue-200 transition">Proyectos</a></li>
@@ -28,155 +28,71 @@
             
             <h3 class="text-xl font-semibold mt-4 text-blue-600">1. La etiqueta HTML &lt;canvas&gt; y contextos 2D</h3>
             <p class="mt-2 text-justify leading-relaxed text-gray-600">
-                La etiqueta <code>&lt;canvas&gt;</code> de HTML5 proporciona un área en la página donde se pueden dibujar gráficos de forma dinámica mediante JavaScript. Por sí sola, la etiqueta es solo un contenedor transparente. Para dibujar en ella, se utiliza una API de renderizado solicitando un "contexto". El contexto <code>"2d"</code> permite trazar formas primitivas, líneas, colores, texto e imágenes mediante un sistema de coordenadas (x, y) donde el origen (0,0) está en la esquina superior izquierda.
+                La etiqueta <code>&lt;canvas&gt;</code> de HTML5 proporciona un área en la página donde se pueden dibujar gráficos de forma dinámica mediante JavaScript. El contexto <code>"2d"</code> permite trazar formas primitivas, líneas, colores, texto e imágenes mediante un sistema de coordenadas (x, y) donde el origen (0,0) está en la esquina superior izquierda.
             </p>
 
             <h3 class="text-xl font-semibold mt-6 text-blue-600">2. Fundamentos de la librería p5.js</h3>
             <p class="mt-2 text-justify leading-relaxed text-gray-600">
-                <strong>p5.js</strong> es una librería de JavaScript diseñada para hacer que la programación visual sea accesible. Abstrae la complejidad del contexto 2D del canvas tradicional. Sus fundamentos se basan en dos funciones principales: 
-                <br><br>• <strong><code>setup()</code></strong>: Se ejecuta una sola vez al iniciar el programa. Se usa para configurar el lienzo (ej. <code>createCanvas()</code>) y definir variables iniciales.
-                <br>• <strong><code>draw()</code></strong>: Se ejecuta en un bucle continuo (por defecto a 60 FPS), actualizando las posiciones y redibujando el fondo, lo que permite crear animaciones cuadro por cuadro.
+                <strong>p5.js</strong> es una librería de JavaScript que abstrae la complejidad del contexto 2D del canvas tradicional. Sus fundamentos se basan en dos funciones: 
+                <br>• <strong><code>setup()</code></strong>: Se ejecuta una sola vez al iniciar. Configura el lienzo y valores iniciales.
+                <br>• <strong><code>draw()</code></strong>: Se ejecuta en un bucle continuo (60 FPS), actualizando las posiciones y redibujando el fondo para crear animaciones.
             </p>
         </section>
 
-        <!-- Sección de Proyectos Animados -->
+        <!-- Sección de Proyectos (Uniendo los 8 trabajos) -->
         <section id="proyectos" class="mb-12">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800">Mis Animaciones</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Mi Galería de Proyectos</h2>
+            
+            <!-- Usamos un grid que se adapta: 1 columna en celulares, 2 en tablets, 3 o 4 en pantallas grandes -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                 
-                <!-- 1. El sol que explota -->
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center">
-                    <h3 class="font-bold text-lg mb-3 text-gray-700">1. El sol que explota</h3>
-                    <div id="sol-container" class="rounded overflow-hidden border border-gray-300"></div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
+                    <h3 class="font-bold text-lg mb-3 text-gray-700">1. Rana</h3>
+                    <div id="rana-container"></div>
                 </div>
 
-                <!-- 2. Nubes que se separan -->
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center">
-                    <h3 class="font-bold text-lg mb-3 text-gray-700">2. Nubes que se separan</h3>
-                    <div id="nubes-container" class="rounded overflow-hidden border border-gray-300"></div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
+                    <h3 class="font-bold text-lg mb-3 text-gray-700">2. Dientes de conejo</h3>
+                    <div id="conejo-container"></div>
                 </div>
 
-                <!-- 3. Estrella fugaz -->
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center">
-                    <h3 class="font-bold text-lg mb-3 text-gray-700">3. Estrella fugaz (Cañón)</h3>
-                    <div id="estrella-container" class="rounded overflow-hidden border border-gray-300"></div>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
+                    <h3 class="font-bold text-lg mb-3 text-gray-700">3. ¿Qué hay de cena?</h3>
+                    <div id="cena-container"></div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
+                    <h3 class="font-bold text-lg mb-3 text-gray-700">4. Día nevado soleado</h3>
+                    <div id="dia-container"></div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
+                    <h3 class="font-bold text-lg mb-3 text-gray-700">5. Muñeco de nieve</h3>
+                    <div id="nieve-container"></div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
+                    <h3 class="font-bold text-lg mb-3 text-gray-700">6. El sol que explota</h3>
+                    <div id="sol-container"></div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
+                    <h3 class="font-bold text-lg mb-3 text-gray-700">7. Nubes que se separan</h3>
+                    <div id="nubes-container"></div>
+                </div>
+
+                <!-- Esta tarjeta es más ancha para que quepa el canvas de 400px -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden xl:col-span-2">
+                    <h3 class="font-bold text-lg mb-3 text-gray-700">8. Estrella fugaz (Cañón y ciudad)</h3>
+                    <div id="estrella-container" class="border border-gray-300"></div>
                 </div>
 
             </div>
         </section>
     </main>
 
-    <!-- Scripts de p5.js en Modo Instancia para Animaciones -->
+    <!-- === SCRIPTS DE P5.JS PARA LOS 8 PROYECTOS === -->
     <script>
-        // 1. El sol que explota
+        // 1. Rana
         new p5((p) => {
-            let sunSize = 30;
-            p.setup = () => { p.createCanvas(350, 350).parent('sol-container'); };
-            p.draw = () => {
-                p.noStroke();
-                p.background(82, 222, 240); // Cielo
-                
-                sunSize += 1; // Crece 1 px por fotograma
-                if(sunSize > 450) sunSize = 30; // Reinicio para la web
-                
-                p.fill(255, 204, 0);
-                p.ellipse(175, 250, sunSize, sunSize); // Sol
-                
-                p.fill(76, 168, 67);
-                p.rect(0, 250, 350, 100); // Tierra
-            };
-        });
-
-        // 2. Nubes que se separan
-        new p5((p) => {
-            let leftX = 130;
-            let rightX = 220;
-            p.setup = () => { p.createCanvas(350, 350).parent('nubes-container'); };
-            p.draw = () => {
-                p.noStroke();
-                p.background(135, 206, 235); // Cielo azul
-                
-                // Sol en el centro
-                p.fill(255, 220, 0);
-                p.ellipse(175, 175, 100, 100);
-                
-                p.fill(255); // Color blanco para nubes
-                
-                // Nube izquierda (moviéndose a la izquierda)
-                p.ellipse(leftX, 175, 80, 60);
-                p.ellipse(leftX - 20, 185, 60, 50);
-                p.ellipse(leftX + 20, 185, 60, 50);
-                
-                // Nube derecha (moviéndose a la derecha)
-                p.ellipse(rightX, 175, 80, 60);
-                p.ellipse(rightX - 20, 185, 60, 50);
-                p.ellipse(rightX + 20, 185, 60, 50);
-                
-                // Animación
-                leftX -= 0.5;
-                rightX += 0.5;
-                
-                // Reinicio para la web
-                if (leftX < -50) {
-                    leftX = 130;
-                    rightX = 220;
-                }
-            };
-        });
-
-        // 3. Estrella fugaz (Con cañón y ciudad)
-        new p5((p) => {
-            // Variables iniciales de tu código
-            let xPos = 0;
-            let yPos = 50;
-            let xPos2 = 350;
-            let yPos2 = 100;
-            let balaX = 40;
-            let balaY = 300;
-
-            p.setup = () => { p.createCanvas(350, 350).parent('estrella-container'); };
-            p.draw = () => {
-                p.noStroke();
-                // Fondo
-                p.background(29, 40, 115);
-                
-                // Edificios
-                p.fill(20, 20, 40);
-                p.rect(30, 200, 80, 150);
-                p.rect(120, 150, 90, 200);
-                p.rect(230, 230, 70, 120);
-                p.rect(300, 130, 80, 220);
-                
-                // Cañón
-                p.fill(100, 100, 100);
-                p.rect(0, 300, 50, 50);
-                p.rect(20, 280, 40, 30);
-                
-                // Bala
-                p.fill(255, 100, 0);
-                p.ellipse(balaX, balaY, 12, 12);
-                balaX += 4;
-                balaY -= 3;
-                
-                // Estrellas Fugaces
-                p.fill(255, 242, 0);
-                p.ellipse(xPos, yPos, 10, 10);
-                xPos += 5;
-                yPos += 3;
-                
-                p.fill(200, 255, 255);
-                p.ellipse(xPos2, yPos2, 8, 8);
-                xPos2 -= 6;
-                yPos2 += 4;
-
-                // Reinicio para que la animación sea infinita en la web
-                if (balaX > 400 || xPos > 400) {
-                    xPos = 0; yPos = 50;
-                    xPos2 = 350; yPos2 = 100;
-                    balaX = 40; balaY = 300;
-                }
-            };
-        });
-    </script>
-</body>
-</html>
+            p.setup = () => { p.createCanvas(300, 300).parent('rana-container'); p.noLoop(); };
