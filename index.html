@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio Khan Academy - p5.js</title>
+    <title>Portafolio Khan Academy - p5.js y Motor 3D</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/p5@1.9.0/lib/p5.min.js"></script>
 </head>
@@ -16,6 +16,7 @@
             <ul class="flex space-x-6 items-center">
                 <li><a href="#teoria" class="hover:text-blue-200 transition">Teoría</a></li>
                 <li><a href="#proyectos" class="hover:text-blue-200 transition">Proyectos</a></li>
+                <li><a href="#motor3d" class="hover:text-blue-200 transition">Motor 3D</a></li>
                 <li><a href="dom-inspector.html" class="bg-white text-blue-600 px-4 py-1 rounded font-semibold hover:bg-gray-200 transition">Ver Árbol DOM</a></li>
             </ul>
         </div>
@@ -25,151 +26,247 @@
         <!-- Sección de Teoría -->
         <section id="teoria" class="mb-12 bg-white p-8 rounded-xl shadow-sm border border-gray-100">
             <h2 class="text-3xl font-bold mb-4 border-b pb-2 text-gray-800">Sección Informativa</h2>
-            
-            <h3 class="text-xl font-semibold mt-4 text-blue-600">1. La etiqueta HTML &lt;canvas&gt; y contextos 2D</h3>
+            <h3 class="text-xl font-semibold mt-4 text-blue-600">1. Pipeline de Transformación 3D</h3>
             <p class="mt-2 text-justify leading-relaxed text-gray-600">
-                La etiqueta <code>&lt;canvas&gt;</code> de HTML5 proporciona un área en la página donde se pueden dibujar gráficos de forma dinámica mediante JavaScript. El contexto <code>"2d"</code> permite trazar formas primitivas, líneas, colores, texto e imágenes mediante un sistema de coordenadas (x, y) donde el origen (0,0) está en la esquina superior izquierda.
-            </p>
-
-            <h3 class="text-xl font-semibold mt-6 text-blue-600">2. Fundamentos de la librería p5.js</h3>
-            <p class="mt-2 text-justify leading-relaxed text-gray-600">
-                <strong>p5.js</strong> es una librería de JavaScript que abstrae la complejidad del contexto 2D del canvas tradicional. Sus fundamentos se basan en dos funciones: 
-                <br>• <strong><code>setup()</code></strong>: Se ejecuta una sola vez al iniciar. Configura el lienzo y valores iniciales.
-                <br>• <strong><code>draw()</code></strong>: Se ejecuta en un bucle continuo (60 FPS), actualizando las posiciones y redibujando el fondo para crear animaciones.
+                El pipeline de renderizado manual convierte un modelo tridimensional (vértices y aristas) en una imagen 2D. Se basa en matemáticas de matrices o trigonometría para aplicar rotaciones, escalas y finalmente usar una proyección perspectiva `(X/Z, Y/Z)` que simula la profundidad óptica invirtiendo el eje Y nativo del Canvas.
             </p>
         </section>
 
-        <!-- Sección de Proyectos -->
-        <section id="proyectos" class="mb-12">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800">Mi Galería de Proyectos</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <!-- Motor Gráfico 3D Personalizado (NUEVA SECCIÓN) -->
+        <section id="motor3d" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Proyecto 9: Motor Gráfico 3D Personalizado</h2>
+            <div class="bg-slate-900 p-6 rounded-xl shadow-lg border border-slate-700 flex flex-col lg:flex-row gap-8 items-center text-white">
                 
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
-                    <h3 class="font-bold text-lg mb-3 text-gray-700">1. Rana</h3>
-                    <div id="rana-container"></div>
+                <!-- Lienzo del Canvas 3D -->
+                <div class="relative bg-black rounded-lg border-2 border-cyan-500 overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.5)]">
+                    <canvas id="canvas3d" width="400" height="400"></canvas>
                 </div>
 
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
-                    <h3 class="font-bold text-lg mb-3 text-gray-700">2. Dientes de conejo</h3>
-                    <div id="conejo-container"></div>
-                </div>
+                <!-- Controles -->
+                <div class="flex-1 w-full flex flex-col gap-5">
+                    <div>
+                        <label class="block font-bold mb-2 text-cyan-400">Seleccionar Geometría:</label>
+                        <select id="shapeSelect" class="w-full p-2 bg-slate-800 border border-cyan-600 rounded text-white focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                            <option value="cubo">Opción Base: Cubo</option>
+                            <option value="piramide">Opción A: Pirámide Cuadrada</option>
+                            <option value="prisma">Opción B: Prisma Triangular</option>
+                            <option value="octaedro">Opción C: Octaedro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="flex justify-between font-semibold"><span>Rotación X (Pitch)</span> <span id="valX">0°</span></label>
+                            <input type="range" id="rotX" min="0" max="360" value="30" class="w-full accent-cyan-500">
+                        </div>
+                        <div>
+                            <label class="flex justify-between font-semibold"><span>Rotación Y (Yaw)</span> <span id="valY">0°</span></label>
+                            <input type="range" id="rotY" min="0" max="360" value="45" class="w-full accent-cyan-500">
+                        </div>
+                        <div>
+                            <label class="flex justify-between font-semibold"><span>Rotación Z (Roll)</span> <span id="valZ">0°</span></label>
+                            <input type="range" id="rotZ" min="0" max="360" value="0" class="w-full accent-cyan-500">
+                        </div>
+                    </div>
 
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
-                    <h3 class="font-bold text-lg mb-3 text-gray-700">3. ¿Qué hay de cena?</h3>
-                    <div id="cena-container"></div>
+                    <!-- Botón Reto: Auto-Rotación -->
+                    <button id="btnAutoRotar" class="mt-4 px-6 py-3 font-bold rounded shadow-lg transition-all duration-300 bg-cyan-600 hover:bg-cyan-500 hover:shadow-[0_0_15px_rgba(6,182,212,0.8)] text-white">
+                        Iniciar Auto-Rotación (Reto 10 Pts)
+                    </button>
                 </div>
+            </div>
+        </section>
 
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
-                    <h3 class="font-bold text-lg mb-3 text-gray-700">4. Día nevado soleado</h3>
-                    <div id="dia-container"></div>
-                </div>
-
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
-                    <h3 class="font-bold text-lg mb-3 text-gray-700">5. Muñeco de nieve</h3>
-                    <div id="nieve-container"></div>
-                </div>
-
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
-                    <h3 class="font-bold text-lg mb-3 text-gray-700">6. El sol que explota</h3>
-                    <div id="sol-container"></div>
-                </div>
-
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden">
-                    <h3 class="font-bold text-lg mb-3 text-gray-700">7. Nubes que se separan</h3>
-                    <div id="nubes-container"></div>
-                </div>
-
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col items-center overflow-hidden xl:col-span-2">
-                    <h3 class="font-bold text-lg mb-3 text-gray-700">8. Estrella fugaz (Cañón y ciudad)</h3>
-                    <div id="estrella-container" class="border border-gray-300"></div>
-                </div>
-
+        <!-- Galería de Proyectos de p5.js -->
+        <section id="proyectos" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Mi Galería de Proyectos p5.js</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                <!-- Se mantienen tus 8 proyectos anteriores (Solo las tarjetas HTML) -->
+                <div class="bg-white p-4 rounded-xl shadow border flex flex-col items-center"><h3 class="font-bold mb-2">1. Rana</h3><div id="rana-container"></div></div>
+                <div class="bg-white p-4 rounded-xl shadow border flex flex-col items-center"><h3 class="font-bold mb-2">2. Dientes de conejo</h3><div id="conejo-container"></div></div>
+                <div class="bg-white p-4 rounded-xl shadow border flex flex-col items-center"><h3 class="font-bold mb-2">3. ¿Qué hay de cena?</h3><div id="cena-container"></div></div>
+                <div class="bg-white p-4 rounded-xl shadow border flex flex-col items-center"><h3 class="font-bold mb-2">4. Día nevado soleado</h3><div id="dia-container"></div></div>
+                <div class="bg-white p-4 rounded-xl shadow border flex flex-col items-center"><h3 class="font-bold mb-2">5. Muñeco de nieve</h3><div id="nieve-container"></div></div>
+                <div class="bg-white p-4 rounded-xl shadow border flex flex-col items-center"><h3 class="font-bold mb-2">6. El sol que explota</h3><div id="sol-container"></div></div>
+                <div class="bg-white p-4 rounded-xl shadow border flex flex-col items-center"><h3 class="font-bold mb-2">7. Nubes que se separan</h3><div id="nubes-container"></div></div>
+                <div class="bg-white p-4 rounded-xl shadow border flex flex-col items-center xl:col-span-2"><h3 class="font-bold mb-2">8. Estrella fugaz</h3><div id="estrella-container"></div></div>
             </div>
         </section>
     </main>
 
+    <!-- SCRIPT PARTE 1: MOTOR 3D CUSTOM (Práctica actual) -->
     <script>
-        new p5((p) => {
-            p.setup = () => { p.createCanvas(300, 300).parent('rana-container'); p.noLoop(); };
-            p.draw = () => {
-                p.background(220); let x = 150, y = 170; p.noStroke(); p.fill(30, 204, 91);
-                p.ellipse(x, y, 200, 100); p.ellipse(x - 50, y - 50, 40, 40); p.ellipse(x + 50, y - 50, 40, 40); 
-                p.fill(255); p.ellipse(x - 50, y - 50, 30, 30); p.ellipse(x + 50, y - 50, 30, 30); 
-                p.fill(0); p.ellipse(x, y + 10, 130, 40); p.rect(x - 55, y - 55, 10, 10); p.rect(x + 45, y - 55, 10, 10); 
+        const canvas3D = document.getElementById('canvas3d');
+        const ctx = canvas3D.getContext('2d');
+        
+        // UI Elements
+        const sliderX = document.getElementById('rotX');
+        const sliderY = document.getElementById('rotY');
+        const sliderZ = document.getElementById('rotZ');
+        const shapeSelect = document.getElementById('shapeSelect');
+        const btnAuto = document.getElementById('btnAutoRotar');
+        
+        // Geometrías (Vértices y Aristas)
+        const geometrias = {
+            cubo: {
+                vertices: [
+                    {x:-1, y:-1, z:-1}, {x:1, y:-1, z:-1}, {x:1, y:1, z:-1}, {x:-1, y:1, z:-1},
+                    {x:-1, y:-1, z:1}, {x:1, y:-1, z:1}, {x:1, y:1, z:1}, {x:-1, y:1, z:1}
+                ],
+                aristas: [[0,1],[1,2],[2,3],[3,0], [4,5],[5,6],[6,7],[7,4], [0,4],[1,5],[2,6],[3,7]]
+            },
+            piramide: { // Base cuadrada (5 vertices, 8 aristas)
+                vertices: [
+                    {x:-1, y:-1, z:-1}, {x:1, y:-1, z:-1}, {x:1, y:-1, z:1}, {x:-1, y:-1, z:1}, // Base
+                    {x:0, y:1, z:0} // Cúspide
+                ],
+                aristas: [[0,1],[1,2],[2,3],[3,0], [0,4],[1,4],[2,4],[3,4]]
+            },
+            prisma: { // Triangular (6 vértices, 9 aristas)
+                vertices: [
+                    {x:0, y:1, z:-1}, {x:-1, y:-1, z:-1}, {x:1, y:-1, z:-1}, // Cara delantera
+                    {x:0, y:1, z:1}, {x:-1, y:-1, z:1}, {x:1, y:-1, z:1}     // Cara trasera
+                ],
+                aristas: [[0,1],[1,2],[2,0], [3,4],[4,5],[5,3], [0,3],[1,4],[2,5]]
+            },
+            octaedro: { // (6 vértices, 12 aristas)
+                vertices: [
+                    {x:0, y:1, z:0}, {x:0, y:-1, z:0}, // Arriba, Abajo
+                    {x:1, y:0, z:0}, {x:0, y:0, z:1}, {x:-1, y:0, z:0}, {x:0, y:0, z:-1} // Ecuador
+                ],
+                aristas: [[0,2],[0,3],[0,4],[0,5], [1,2],[1,3],[1,4],[1,5], [2,3],[3,4],[4,5],[5,2]]
+            }
+        };
+
+        let autoRotar = false;
+        let yawAcumulado = parseInt(sliderY.value);
+
+        // PIPELINE: Transformación 3D
+        function transformarVertice3D(v, rx, ry, rz, escala) {
+            let cx = Math.cos(rx), sx = Math.sin(rx);
+            let cy = Math.cos(ry), sy = Math.sin(ry);
+            let cz = Math.cos(rz), sz = Math.sin(rz);
+
+            // Rotación X
+            let y1 = v.y * cx - v.z * sx;
+            let z1 = v.y * sx + v.z * cx;
+            // Rotación Y
+            let x2 = v.x * cy + z1 * sy;
+            let z2 = -v.x * sy + z1 * cy;
+            // Rotación Z
+            let x3 = x2 * cz - y1 * sz;
+            let y3 = x2 * sz + y1 * cz;
+
+            // Escala y retorno
+            return { x: x3 * escala, y: y3 * escala, z: z2 * escala };
+        }
+
+        // PIPELINE: Proyección Perspectiva
+        function proyectar3Da2D(v3d) {
+            const distanciaCamara = 500;
+            const CENTRO_X = 200, CENTRO_Y = 200;
+            
+            // Factor de profundidad
+            let factorProyeccion = distanciaCamara / (distanciaCamara + v3d.z);
+            
+            return {
+                x: CENTRO_X + (v3d.x * factorProyeccion),
+                // INVERSIÓN DEL EJE Y (Justificación pregunta 3)
+                y: CENTRO_Y - (v3d.y * factorProyeccion), 
+                z_profundidad: factorProyeccion // Usado para estilo visual
             };
+        }
+
+        // Bucle Principal de Renderizado
+        function render3D() {
+            ctx.clearRect(0, 0, canvas3D.width, canvas3D.height);
+            
+            let forma = geometrias[shapeSelect.value];
+            let radX = sliderX.value * Math.PI / 180;
+            let radY = (autoRotar ? yawAcumulado : sliderY.value) * Math.PI / 180;
+            let radZ = sliderZ.value * Math.PI / 180;
+
+            document.getElementById('valX').innerText = sliderX.value + "°";
+            document.getElementById('valY').innerText = (autoRotar ? (yawAcumulado%360) : sliderY.value) + "°";
+            document.getElementById('valZ').innerText = sliderZ.value + "°";
+
+            let verticesProyectados = [];
+
+            // 1. Transformar y Proyectar cada vértice
+            for (let v of forma.vertices) {
+                let vTransformado = transformarVertice3D(v, radX, radY, radZ, 80);
+                verticesProyectados.push(proyectar3Da2D(vTransformado));
+            }
+
+            // 2. Dibujar Aristas (Con estilo dinámico - Parte 3)
+            for (let arista of forma.aristas) {
+                let p1 = verticesProyectados[arista[0]];
+                let p2 = verticesProyectados[arista[1]];
+                
+                // Grosor y opacidad basados en la distancia z_profundidad
+                let zPromedio = (p1.z_profundidad + p2.z_profundidad) / 2;
+                
+                ctx.beginPath();
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                // Personalización de Estilo: Color neón, cambia opacidad/grosor según distancia
+                ctx.strokeStyle = `rgba(6, 182, 212, ${zPromedio})`;
+                ctx.lineWidth = 2 * zPromedio; 
+                ctx.stroke();
+            }
+
+            // 3. Dibujar Vértices (Nodos)
+            for (let p of verticesProyectados) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 4 * p.z_profundidad, 0, Math.PI * 2);
+                ctx.fillStyle = '#fff';
+                ctx.fill();
+            }
+
+            // Lógica Auto-Rotar (Reto)
+            if (autoRotar) {
+                yawAcumulado += 1;
+                requestAnimationFrame(render3D);
+            }
+        }
+
+        // Listeners
+        sliderX.addEventListener('input', render3D);
+        sliderY.addEventListener('input', render3D);
+        sliderZ.addEventListener('input', render3D);
+        shapeSelect.addEventListener('change', render3D);
+        
+        btnAuto.addEventListener('click', () => {
+            autoRotar = !autoRotar;
+            if (autoRotar) {
+                yawAcumulado = parseInt(sliderY.value);
+                btnAuto.innerText = "Detener Rotación";
+                btnAuto.classList.replace('bg-cyan-600', 'bg-red-600');
+                sliderY.disabled = true;
+                requestAnimationFrame(render3D);
+            } else {
+                btnAuto.innerText = "Iniciar Auto-Rotación (Reto 10 Pts)";
+                btnAuto.classList.replace('bg-red-600', 'bg-cyan-600');
+                sliderY.disabled = false;
+                sliderY.value = yawAcumulado % 360;
+                render3D();
+            }
         });
 
-        new p5((p) => {
-            p.setup = () => { p.createCanvas(300, 300).parent('conejo-container'); p.noLoop(); };
-            p.draw = () => {
-                p.background(220); p.ellipse(100, 70, 60, 120); p.ellipse(200, 70, 60, 120); p.ellipse(150, 170, 150, 150); 
-                p.fill(0); p.ellipse(120, 150, 15, 15); p.ellipse(180, 150, 15, 15); p.line(100, 200, 200, 200); 
-                p.noFill(); p.rect(135, 200, 15, 30); p.rect(150, 200, 15, 30); 
-            };
-        });
+        // Inicio
+        render3D();
+    </script>
 
-        new p5((p) => {
-            p.setup = () => { p.createCanvas(300, 300).parent('cena-container'); p.noLoop(); };
-            p.draw = () => {
-                p.background(186, 145, 20); p.stroke(150); p.fill(245); p.ellipse(150, 150, 250, 250); 
-                p.stroke(200); p.fill(255); p.ellipse(150, 150, 200, 200); p.stroke(200, 150, 50); p.fill(242, 212, 107); p.ellipse(150, 150, 180, 90); 
-                p.stroke(60, 30, 0); p.fill(102, 51, 0); p.ellipse(150, 150, 150, 50); p.noStroke(); p.fill(220, 20, 20); 
-                p.rect(125, 145, 10, 10); p.rect(150, 140, 10, 10); p.rect(110, 135, 10, 10); p.rect(165, 148, 10, 10);
-            };
-        });
-
-        new p5((p) => {
-            let sunSize = 30;
-            p.setup = () => { p.createCanvas(300, 300).parent('dia-container'); };
-            p.draw = () => {
-                p.background(82, 222, 240); sunSize += 0.5; if(sunSize > 400) sunSize = 30; 
-                p.noStroke(); p.fill(255, 204, 0); p.ellipse(150, 250, sunSize, sunSize); p.fill(76, 168, 67); p.rect(0, 250, 300, 100);
-            };
-        });
-
-        new p5((p) => {
-            p.setup = () => { p.createCanvas(300, 300).parent('nieve-container'); p.noLoop(); };
-            p.draw = () => {
-                p.background(150, 200, 255); p.noStroke(); p.fill(255); p.rect(0, 250, 300, 50); 
-                p.ellipse(150, 230, 100, 100); p.ellipse(150, 160, 70, 70); p.ellipse(150, 100, 50, 50);   
-                p.fill(0); p.ellipse(140, 95, 5, 5); p.ellipse(160, 95, 5, 5); p.fill(255, 100, 0); p.triangle(150, 100, 170, 105, 150, 110); 
-            };
-        });
-
-        new p5((p) => {
-            let sunSize = 30;
-            p.setup = () => { p.createCanvas(300, 300).parent('sol-container'); };
-            p.draw = () => {
-                p.noStroke(); p.background(82, 222, 240); sunSize += 2; if(sunSize > 450) sunSize = 30; 
-                p.fill(255, 204, 0); p.ellipse(150, 250, sunSize, sunSize); p.fill(76, 168, 67); p.rect(0, 250, 300, 100); 
-            };
-        });
-
-        new p5((p) => {
-            let leftX = 110; let rightX = 190;
-            p.setup = () => { p.createCanvas(300, 300).parent('nubes-container'); };
-            p.draw = () => {
-                p.noStroke(); p.background(135, 206, 235); p.fill(255, 220, 0); p.ellipse(150, 150, 80, 80); 
-                p.fill(255); p.ellipse(leftX, 150, 80, 60); p.ellipse(leftX - 20, 160, 60, 50); p.ellipse(leftX + 20, 160, 60, 50);
-                p.ellipse(rightX, 150, 80, 60); p.ellipse(rightX - 20, 160, 60, 50); p.ellipse(rightX + 20, 160, 60, 50);
-                leftX -= 0.5; rightX += 0.5; if (leftX < -50) { leftX = 110; rightX = 190; }
-            };
-        });
-
-        new p5((p) => {
-            let xPos = 0; let yPos = 50; let xPos2 = 400; let yPos2 = 100; let balaX = 40; let balaY = 350;
-            p.setup = () => { p.createCanvas(400, 400).parent('estrella-container'); };
-            p.draw = () => {
-                p.noStroke(); p.background(29, 40, 115); 
-                p.fill(20, 20, 40); p.rect(30, 250, 80, 150); p.rect(120, 200, 90, 200); p.rect(230, 280, 70, 120); p.rect(320, 180, 80, 220);
-                p.fill(100, 100, 100); p.rect(0, 350, 50, 50); p.rect(20, 330, 40, 30);
-                p.fill(255, 100, 0); p.ellipse(balaX, balaY, 12, 12); balaX += 4; balaY -= 3;
-                p.fill(255, 242, 0); p.ellipse(xPos, yPos, 10, 10); xPos += 5; yPos += 3;
-                p.fill(200, 255, 255); p.ellipse(xPos2, yPos2, 8, 8); xPos2 -= 6; yPos2 += 4;
-                if (balaX > 450 || xPos > 450) { xPos = 0; yPos = 50; xPos2 = 400; yPos2 = 100; balaX = 40; balaY = 350; }
-            };
-        });
+    <!-- SCRIPT PARTE 2: PROYECTOS P5.JS (Código intacto de animaciones anteriores) -->
+    <script>
+        new p5((p)=>{p.setup=()=>{p.createCanvas(300,300).parent('rana-container');p.noLoop();};p.draw=()=>{p.background(220);let x=150,y=170;p.noStroke();p.fill(30,204,91);p.ellipse(x,y,200,100);p.ellipse(x-50,y-50,40,40);p.ellipse(x+50,y-50,40,40);p.fill(255);p.ellipse(x-50,y-50,30,30);p.ellipse(x+50,y-50,30,30);p.fill(0);p.ellipse(x,y+10,130,40);p.rect(x-55,y-55,10,10);p.rect(x+45,y-55,10,10);};});
+        new p5((p)=>{p.setup=()=>{p.createCanvas(300,300).parent('conejo-container');p.noLoop();};p.draw=()=>{p.background(220);p.ellipse(100,70,60,120);p.ellipse(200,70,60,120);p.ellipse(150,170,150,150);p.fill(0);p.ellipse(120,150,15,15);p.ellipse(180,150,15,15);p.line(100,200,200,200);p.noFill();p.rect(135,200,15,30);p.rect(150,200,15,30);};});
+        new p5((p)=>{p.setup=()=>{p.createCanvas(300,300).parent('cena-container');p.noLoop();};p.draw=()=>{p.background(186,145,20);p.stroke(150);p.fill(245);p.ellipse(150,150,250,250);p.stroke(200);p.fill(255);p.ellipse(150,150,200,200);p.stroke(200,150,50);p.fill(242,212,107);p.ellipse(150,150,180,90);p.stroke(60,30,0);p.fill(102,51,0);p.ellipse(150,150,150,50);p.noStroke();p.fill(220,20,20);p.rect(125,145,10,10);p.rect(150,140,10,10);p.rect(110,135,10,10);p.rect(165,148,10,10);};});
+        new p5((p)=>{let sunSize=30;p.setup=()=>{p.createCanvas(300,300).parent('dia-container');};p.draw=()=>{p.background(82,222,240);sunSize+=0.5;if(sunSize>400)sunSize=30;p.noStroke();p.fill(255,204,0);p.ellipse(150,250,sunSize,sunSize);p.fill(76,168,67);p.rect(0,250,300,100);};});
+        new p5((p)=>{p.setup=()=>{p.createCanvas(300,300).parent('nieve-container');p.noLoop();};p.draw=()=>{p.background(150,200,255);p.noStroke();p.fill(255);p.rect(0,250,300,50);p.ellipse(150,230,100,100);p.ellipse(150,160,70,70);p.ellipse(150,100,50,50);p.fill(0);p.ellipse(140,95,5,5);p.ellipse(160,95,5,5);p.fill(255,100,0);p.triangle(150,100,170,105,150,110);};});
+        new p5((p)=>{let sunSize=30;p.setup=()=>{p.createCanvas(300,300).parent('sol-container');};p.draw=()=>{p.noStroke();p.background(82,222,240);sunSize+=2;if(sunSize>450)sunSize=30;p.fill(255,204,0);p.ellipse(150,250,sunSize,sunSize);p.fill(76,168,67);p.rect(0,250,300,100);};});
+        new p5((p)=>{let leftX=110;let rightX=190;p.setup=()=>{p.createCanvas(300,300).parent('nubes-container');};p.draw=()=>{p.noStroke();p.background(135,206,235);p.fill(255,220,0);p.ellipse(150,150,80,80);p.fill(255);p.ellipse(leftX,150,80,60);p.ellipse(leftX-20,160,60,50);p.ellipse(leftX+20,160,60,50);p.ellipse(rightX,150,80,60);p.ellipse(rightX-20,160,60,50);p.ellipse(rightX+20,160,60,50);leftX-=0.5;rightX+=0.5;if(leftX<-50){leftX=110;rightX=190;}};});
+        new p5((p)=>{let xPos=0;let yPos=50;let xPos2=400;let yPos2=100;let balaX=40;let balaY=350;p.setup=()=>{p.createCanvas(400,400).parent('estrella-container');};p.draw=()=>{p.noStroke();p.background(29,40,115);p.fill(20,20,40);p.rect(30,250,80,150);p.rect(120,200,90,200);p.rect(230,280,70,120);p.rect(320,180,80,220);p.fill(100,100,100);p.rect(0,350,50,50);p.rect(20,330,40,30);p.fill(255,100,0);p.ellipse(balaX,balaY,12,12);balaX+=4;balaY-=3;p.fill(255,242,0);p.ellipse(xPos,yPos,10,10);xPos+=5;yPos+=3;p.fill(200,255,255);p.ellipse(xPos2,yPos2,8,8);xPos2-=6;yPos2+=4;if(balaX>450||xPos>450){xPos=0;yPos=50;xPos2=400;yPos2=100;balaX=40;balaY=350;}};});
     </script>
 </body>
 </html>
