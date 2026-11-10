@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio Khan Academy - p5.js y Motor 3D</title>
+    <title>Portafolio Khan Academy - Motor 3D y Asteroides</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/p5@1.9.0/lib/p5.min.js"></script>
 </head>
@@ -15,34 +15,34 @@
             <h1 class="text-xl font-bold">Portafolio Web interactivo</h1>
             <ul class="flex space-x-6 items-center">
                 <li><a href="#teoria" class="hover:text-blue-200 transition">Teoría</a></li>
-                <li><a href="#proyectos" class="hover:text-blue-200 transition">Proyectos</a></li>
                 <li><a href="#motor3d" class="hover:text-blue-200 transition">Motor 3D</a></li>
+                <li><a href="#asteroides" class="hover:text-blue-200 transition text-yellow-300">Juego Asteroides</a></li>
+                <li><a href="#proyectos" class="hover:text-blue-200 transition">Galería p5</a></li>
                 <li><a href="dom-inspector.html" class="bg-white text-blue-600 px-4 py-1 rounded font-semibold hover:bg-gray-200 transition">Ver Árbol DOM</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="container mx-auto p-6">
+        
         <!-- Sección de Teoría -->
         <section id="teoria" class="mb-12 bg-white p-8 rounded-xl shadow-sm border border-gray-100">
             <h2 class="text-3xl font-bold mb-4 border-b pb-2 text-gray-800">Sección Informativa</h2>
             <h3 class="text-xl font-semibold mt-4 text-blue-600">1. Pipeline de Transformación 3D</h3>
             <p class="mt-2 text-justify leading-relaxed text-gray-600">
-                El pipeline de renderizado manual convierte un modelo tridimensional (vértices y aristas) en una imagen 2D. Se basa en matemáticas de matrices o trigonometría para aplicar rotaciones, escalas y finalmente usar una proyección perspectiva `(X/Z, Y/Z)` que simula la profundidad óptica invirtiendo el eje Y nativo del Canvas.
+                El pipeline de renderizado manual convierte un modelo tridimensional (vértices y aristas) en una imagen 2D. Se basa en matemáticas de matrices o trigonometría para aplicar rotaciones, escalas y finalmente usar una proyección perspectiva que simula la profundidad óptica.
             </p>
         </section>
 
-        <!-- Motor Gráfico 3D Personalizado (NUEVA SECCIÓN) -->
+        <!-- Proyecto 9: Motor Gráfico 3D (Se mantiene idéntico) -->
         <section id="motor3d" class="mb-12">
             <h2 class="text-3xl font-bold mb-6 text-gray-800">Proyecto 9: Motor Gráfico 3D Personalizado</h2>
             <div class="bg-slate-900 p-6 rounded-xl shadow-lg border border-slate-700 flex flex-col lg:flex-row gap-8 items-center text-white">
                 
-                <!-- Lienzo del Canvas 3D -->
                 <div class="relative bg-black rounded-lg border-2 border-cyan-500 overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.5)]">
                     <canvas id="canvas3d" width="400" height="400"></canvas>
                 </div>
 
-                <!-- Controles -->
                 <div class="flex-1 w-full flex flex-col gap-5">
                     <div>
                         <label class="block font-bold mb-2 text-cyan-400">Seleccionar Geometría:</label>
@@ -60,7 +60,7 @@
                             <input type="range" id="rotX" min="0" max="360" value="30" class="w-full accent-cyan-500">
                         </div>
                         <div>
-                            <label class="flex justify-between font-semibold"><span>Rotación Y (Yaw)</span> <span id="valY">0°</span></label>
+                            <label class="flex justify-between font-semibold"><span>Rotación Y (Yaw)</span> <span id="valY">45°</span></label>
                             <input type="range" id="rotY" min="0" max="360" value="45" class="w-full accent-cyan-500">
                         </div>
                         <div>
@@ -69,19 +69,29 @@
                         </div>
                     </div>
 
-                    <!-- Botón Reto: Auto-Rotación -->
-                    <button id="btnAutoRotar" class="mt-4 px-6 py-3 font-bold rounded shadow-lg transition-all duration-300 bg-cyan-600 hover:bg-cyan-500 hover:shadow-[0_0_15px_rgba(6,182,212,0.8)] text-white">
+                    <button id="btnAutoRotar" class="mt-4 px-6 py-3 font-bold rounded shadow-lg transition-all duration-300 bg-cyan-600 hover:bg-cyan-500 text-white">
                         Iniciar Auto-Rotación (Reto 10 Pts)
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- Galería de Proyectos de p5.js -->
+        <!-- NUEVO PROYECTO 10: ASTEROIDES -->
+        <section id="asteroides" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Proyecto 10: Asteroides X (Juego Jugable)</h2>
+            <div class="bg-black p-4 rounded-xl shadow-lg border-4 border-gray-700 flex flex-col items-center">
+                <p class="text-gray-400 mb-4 text-center">
+                    <b>Controles:</b> W/A/D (o Flechas) para moverte | ESPACIO para disparar | SHIFT para impulso
+                </p>
+                <!-- Aquí se renderiza el juego de p5.js -->
+                <div id="asteroides-container" class="rounded overflow-hidden shadow-[0_0_20px_rgba(255,210,80,0.3)]"></div>
+            </div>
+        </section>
+
+        <!-- Galería de Proyectos de p5.js Originales -->
         <section id="proyectos" class="mb-12">
-            <h2 class="text-3xl font-bold mb-6 text-gray-800">Mi Galería de Proyectos p5.js</h2>
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Mi Galería de Animaciones p5.js</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                <!-- Se mantienen tus 8 proyectos anteriores (Solo las tarjetas HTML) -->
                 <div class="bg-white p-4 rounded-xl shadow border flex flex-col items-center"><h3 class="font-bold mb-2">1. Rana</h3><div id="rana-container"></div></div>
                 <div class="bg-white p-4 rounded-xl shadow border flex flex-col items-center"><h3 class="font-bold mb-2">2. Dientes de conejo</h3><div id="conejo-container"></div></div>
                 <div class="bg-white p-4 rounded-xl shadow border flex flex-col items-center"><h3 class="font-bold mb-2">3. ¿Qué hay de cena?</h3><div id="cena-container"></div></div>
@@ -94,170 +104,229 @@
         </section>
     </main>
 
-    <!-- SCRIPT PARTE 1: MOTOR 3D CUSTOM (Práctica actual) -->
+    <!-- SCRIPT PARTE 1: MOTOR 3D CUSTOM (Intacto) -->
     <script>
         const canvas3D = document.getElementById('canvas3d');
         const ctx = canvas3D.getContext('2d');
+        const sliderX = document.getElementById('rotX'), sliderY = document.getElementById('rotY'), sliderZ = document.getElementById('rotZ');
+        const shapeSelect = document.getElementById('shapeSelect'), btnAuto = document.getElementById('btnAutoRotar');
         
-        // UI Elements
-        const sliderX = document.getElementById('rotX');
-        const sliderY = document.getElementById('rotY');
-        const sliderZ = document.getElementById('rotZ');
-        const shapeSelect = document.getElementById('shapeSelect');
-        const btnAuto = document.getElementById('btnAutoRotar');
-        
-        // Geometrías (Vértices y Aristas)
         const geometrias = {
-            cubo: {
-                vertices: [
-                    {x:-1, y:-1, z:-1}, {x:1, y:-1, z:-1}, {x:1, y:1, z:-1}, {x:-1, y:1, z:-1},
-                    {x:-1, y:-1, z:1}, {x:1, y:-1, z:1}, {x:1, y:1, z:1}, {x:-1, y:1, z:1}
-                ],
-                aristas: [[0,1],[1,2],[2,3],[3,0], [4,5],[5,6],[6,7],[7,4], [0,4],[1,5],[2,6],[3,7]]
-            },
-            piramide: { // Base cuadrada (5 vertices, 8 aristas)
-                vertices: [
-                    {x:-1, y:-1, z:-1}, {x:1, y:-1, z:-1}, {x:1, y:-1, z:1}, {x:-1, y:-1, z:1}, // Base
-                    {x:0, y:1, z:0} // Cúspide
-                ],
-                aristas: [[0,1],[1,2],[2,3],[3,0], [0,4],[1,4],[2,4],[3,4]]
-            },
-            prisma: { // Triangular (6 vértices, 9 aristas)
-                vertices: [
-                    {x:0, y:1, z:-1}, {x:-1, y:-1, z:-1}, {x:1, y:-1, z:-1}, // Cara delantera
-                    {x:0, y:1, z:1}, {x:-1, y:-1, z:1}, {x:1, y:-1, z:1}     // Cara trasera
-                ],
-                aristas: [[0,1],[1,2],[2,0], [3,4],[4,5],[5,3], [0,3],[1,4],[2,5]]
-            },
-            octaedro: { // (6 vértices, 12 aristas)
-                vertices: [
-                    {x:0, y:1, z:0}, {x:0, y:-1, z:0}, // Arriba, Abajo
-                    {x:1, y:0, z:0}, {x:0, y:0, z:1}, {x:-1, y:0, z:0}, {x:0, y:0, z:-1} // Ecuador
-                ],
-                aristas: [[0,2],[0,3],[0,4],[0,5], [1,2],[1,3],[1,4],[1,5], [2,3],[3,4],[4,5],[5,2]]
-            }
+            cubo: { vertices: [{x:-1, y:-1, z:-1}, {x:1, y:-1, z:-1}, {x:1, y:1, z:-1}, {x:-1, y:1, z:-1}, {x:-1, y:-1, z:1}, {x:1, y:-1, z:1}, {x:1, y:1, z:1}, {x:-1, y:1, z:1}], aristas: [[0,1],[1,2],[2,3],[3,0], [4,5],[5,6],[6,7],[7,4], [0,4],[1,5],[2,6],[3,7]] },
+            piramide: { vertices: [{x:-1, y:-1, z:-1}, {x:1, y:-1, z:-1}, {x:1, y:-1, z:1}, {x:-1, y:-1, z:1}, {x:0, y:1, z:0}], aristas: [[0,1],[1,2],[2,3],[3,0], [0,4],[1,4],[2,4],[3,4]] },
+            prisma: { vertices: [{x:0, y:1, z:-1}, {x:-1, y:-1, z:-1}, {x:1, y:-1, z:-1}, {x:0, y:1, z:1}, {x:-1, y:-1, z:1}, {x:1, y:-1, z:1}], aristas: [[0,1],[1,2],[2,0], [3,4],[4,5],[5,3], [0,3],[1,4],[2,5]] },
+            octaedro: { vertices: [{x:0, y:1, z:0}, {x:0, y:-1, z:0}, {x:1, y:0, z:0}, {x:0, y:0, z:1}, {x:-1, y:0, z:0}, {x:0, y:0, z:-1}], aristas: [[0,2],[0,3],[0,4],[0,5], [1,2],[1,3],[1,4],[1,5], [2,3],[3,4],[4,5],[5,2]] }
         };
 
-        let autoRotar = false;
-        let yawAcumulado = parseInt(sliderY.value);
+        let autoRotar = false, yawAcumulado = parseInt(sliderY.value);
 
-        // PIPELINE: Transformación 3D
         function transformarVertice3D(v, rx, ry, rz, escala) {
-            let cx = Math.cos(rx), sx = Math.sin(rx);
-            let cy = Math.cos(ry), sy = Math.sin(ry);
-            let cz = Math.cos(rz), sz = Math.sin(rz);
-
-            // Rotación X
-            let y1 = v.y * cx - v.z * sx;
-            let z1 = v.y * sx + v.z * cx;
-            // Rotación Y
-            let x2 = v.x * cy + z1 * sy;
-            let z2 = -v.x * sy + z1 * cy;
-            // Rotación Z
-            let x3 = x2 * cz - y1 * sz;
-            let y3 = x2 * sz + y1 * cz;
-
-            // Escala y retorno
-            return { x: x3 * escala, y: y3 * escala, z: z2 * escala };
+            let cx=Math.cos(rx), sx=Math.sin(rx), cy=Math.cos(ry), sy=Math.sin(ry), cz=Math.cos(rz), sz=Math.sin(rz);
+            let y1=v.y*cx-v.z*sx, z1=v.y*sx+v.z*cx;
+            let x2=v.x*cy+z1*sy, z2=-v.x*sy+z1*cy;
+            let x3=x2*cz-y1*sz, y3=x2*sz+y1*cz;
+            return { x: x3*escala, y: y3*escala, z: z2*escala };
         }
 
-        // PIPELINE: Proyección Perspectiva
         function proyectar3Da2D(v3d) {
-            const distanciaCamara = 500;
-            const CENTRO_X = 200, CENTRO_Y = 200;
-            
-            // Factor de profundidad
-            let factorProyeccion = distanciaCamara / (distanciaCamara + v3d.z);
-            
-            return {
-                x: CENTRO_X + (v3d.x * factorProyeccion),
-                // INVERSIÓN DEL EJE Y (Justificación pregunta 3)
-                y: CENTRO_Y - (v3d.y * factorProyeccion), 
-                z_profundidad: factorProyeccion // Usado para estilo visual
-            };
+            let fp = 500 / (500 + v3d.z);
+            return { x: 200 + (v3d.x * fp), y: 200 - (v3d.y * fp), z_profundidad: fp };
         }
 
-        // Bucle Principal de Renderizado
         function render3D() {
             ctx.clearRect(0, 0, canvas3D.width, canvas3D.height);
-            
             let forma = geometrias[shapeSelect.value];
-            let radX = sliderX.value * Math.PI / 180;
-            let radY = (autoRotar ? yawAcumulado : sliderY.value) * Math.PI / 180;
-            let radZ = sliderZ.value * Math.PI / 180;
+            let radX = sliderX.value*Math.PI/180, radY = (autoRotar?yawAcumulado:sliderY.value)*Math.PI/180, radZ = sliderZ.value*Math.PI/180;
 
             document.getElementById('valX').innerText = sliderX.value + "°";
-            document.getElementById('valY').innerText = (autoRotar ? (yawAcumulado%360) : sliderY.value) + "°";
+            document.getElementById('valY').innerText = (autoRotar?(yawAcumulado%360):sliderY.value) + "°";
             document.getElementById('valZ').innerText = sliderZ.value + "°";
 
-            let verticesProyectados = [];
+            let verticesProy = forma.vertices.map(v => proyectar3Da2D(transformarVertice3D(v, radX, radY, radZ, 80)));
 
-            // 1. Transformar y Proyectar cada vértice
-            for (let v of forma.vertices) {
-                let vTransformado = transformarVertice3D(v, radX, radY, radZ, 80);
-                verticesProyectados.push(proyectar3Da2D(vTransformado));
-            }
+            forma.aristas.forEach(a => {
+                let p1 = verticesProy[a[0]], p2 = verticesProy[a[1]], zp = (p1.z_profundidad+p2.z_profundidad)/2;
+                ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = `rgba(6, 182, 212, ${zp})`; ctx.lineWidth = 2*zp; ctx.stroke();
+            });
 
-            // 2. Dibujar Aristas (Con estilo dinámico - Parte 3)
-            for (let arista of forma.aristas) {
-                let p1 = verticesProyectados[arista[0]];
-                let p2 = verticesProyectados[arista[1]];
-                
-                // Grosor y opacidad basados en la distancia z_profundidad
-                let zPromedio = (p1.z_profundidad + p2.z_profundidad) / 2;
-                
-                ctx.beginPath();
-                ctx.moveTo(p1.x, p1.y);
-                ctx.lineTo(p2.x, p2.y);
-                // Personalización de Estilo: Color neón, cambia opacidad/grosor según distancia
-                ctx.strokeStyle = `rgba(6, 182, 212, ${zPromedio})`;
-                ctx.lineWidth = 2 * zPromedio; 
-                ctx.stroke();
-            }
+            verticesProy.forEach(p => {
+                ctx.beginPath(); ctx.arc(p.x, p.y, 4*p.z_profundidad, 0, Math.PI*2);
+                ctx.fillStyle = '#fff'; ctx.fill();
+            });
 
-            // 3. Dibujar Vértices (Nodos)
-            for (let p of verticesProyectados) {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, 4 * p.z_profundidad, 0, Math.PI * 2);
-                ctx.fillStyle = '#fff';
-                ctx.fill();
-            }
-
-            // Lógica Auto-Rotar (Reto)
-            if (autoRotar) {
-                yawAcumulado += 1;
-                requestAnimationFrame(render3D);
-            }
+            if(autoRotar) { yawAcumulado += 1; requestAnimationFrame(render3D); }
         }
 
-        // Listeners
-        sliderX.addEventListener('input', render3D);
-        sliderY.addEventListener('input', render3D);
-        sliderZ.addEventListener('input', render3D);
-        shapeSelect.addEventListener('change', render3D);
-        
+        sliderX.addEventListener('input', render3D); sliderY.addEventListener('input', render3D);
+        sliderZ.addEventListener('input', render3D); shapeSelect.addEventListener('change', render3D);
         btnAuto.addEventListener('click', () => {
             autoRotar = !autoRotar;
-            if (autoRotar) {
-                yawAcumulado = parseInt(sliderY.value);
-                btnAuto.innerText = "Detener Rotación";
-                btnAuto.classList.replace('bg-cyan-600', 'bg-red-600');
-                sliderY.disabled = true;
-                requestAnimationFrame(render3D);
-            } else {
-                btnAuto.innerText = "Iniciar Auto-Rotación (Reto 10 Pts)";
-                btnAuto.classList.replace('bg-red-600', 'bg-cyan-600');
-                sliderY.disabled = false;
-                sliderY.value = yawAcumulado % 360;
-                render3D();
-            }
+            if(autoRotar) { yawAcumulado=parseInt(sliderY.value); btnAuto.innerText="Detener Rotación"; btnAuto.classList.replace('bg-cyan-600','bg-red-600'); sliderY.disabled=true; requestAnimationFrame(render3D); } 
+            else { btnAuto.innerText="Iniciar Auto-Rotación (Reto 10 Pts)"; btnAuto.classList.replace('bg-red-600','bg-cyan-600'); sliderY.disabled=false; sliderY.value=yawAcumulado%360; render3D(); }
         });
-
-        // Inicio
         render3D();
     </script>
 
-    <!-- SCRIPT PARTE 2: PROYECTOS P5.JS (Código intacto de animaciones anteriores) -->
+    <!-- SCRIPT PARTE 2: ASTEROIDES TRADUCIDO DE PYTHON A P5.JS -->
+    <script>
+        new p5((p) => {
+            const ANCHO = 800, ALTO = 600;
+            let nave, proyectiles = [], asteroides = [], estrellas = [];
+            let puntaje = 0, oleada = 1, ultimoDisparo = -250;
+            
+            const modeloNave = [[0, -25], [-15, 12.5], [15, 12.5]];
+            const modeloLlama = [[-8, 12.5], [0, 30], [8, 12.5]];
+
+            p.setup = () => {
+                let canvas = p.createCanvas(ANCHO, ALTO).parent('asteroides-container');
+                // Esto evita que la página web se desplace hacia abajo al presionar ESPACIO o FLECHAS jugando
+                canvas.elt.addEventListener('keydown', (e) => { if([32, 37, 38, 39, 40].includes(e.keyCode)) e.preventDefault(); });
+                
+                // Inicializar estrellas
+                for(let i=0; i<140; i++) {
+                    estrellas.push({ x: p.random(ANCHO), y: p.random(ALTO), r: p.random()>0.8?2:1, b: p.random(90,200), fase: p.random(p.TWO_PI), parpadeo: p.random(1,3) });
+                }
+                
+                nave = { x: ANCHO/2, y: ALTO/2, theta: -p.HALF_PI, vel: 200, rotVel: p.radians(200), tImpulso: 0, ultImpulso: -2500 };
+                asteroides = crearOleada(4);
+            };
+
+            function crearOleada(cantidad) {
+                let asts = [];
+                while(asts.length < cantidad) {
+                    let ax = p.random(ANCHO), ay = p.random(ALTO);
+                    if(p.dist(ax, ay, nave.x, nave.y) > 180) asts.push(crearAsteroide(ax, ay, 45));
+                }
+                return asts;
+            }
+
+            function crearAsteroide(x, y, r) {
+                let n = p.floor(p.random(9, 13)), forma = [];
+                for(let i=0; i<n; i++) {
+                    let a = p.TWO_PI * i / n, rad = r * p.random(0.75, 1.15);
+                    forma.push({x: p.cos(a)*rad, y: p.sin(a)*rad});
+                }
+                let vel = p.random(40, 80) * p.sqrt(45/r), dir = p.random(p.TWO_PI);
+                return { x, y, r, vx: p.cos(dir)*vel, vy: p.sin(dir)*vel, ang: 0, giro: p.random(-1.5, 1.5), forma };
+            }
+
+            p.draw = () => {
+                let dt = 1/60; // Delta time fijo para 60fps
+                let ahora = p.millis();
+
+                // --- CONTROLES ---
+                if (p.keyIsDown(65) || p.keyIsDown(p.LEFT_ARROW)) nave.theta -= nave.rotVel * dt; // A o Izquierda
+                if (p.keyIsDown(68) || p.keyIsDown(p.RIGHT_ARROW)) nave.theta += nave.rotVel * dt; // D o Derecha
+                if (p.keyIsDown(87) || p.keyIsDown(p.UP_ARROW)) { // W o Arriba
+                    nave.x += p.cos(nave.theta) * nave.vel * dt;
+                    nave.y += p.sin(nave.theta) * nave.vel * dt;
+                }
+                if (p.keyIsDown(16) && ahora - nave.ultImpulso >= 2500) { // SHIFT (Impulso)
+                    nave.tImpulso = 0.22; nave.ultImpulso = ahora;
+                }
+                if (p.keyIsDown(32) && ahora - ultimoDisparo >= 250) { // ESPACIO (Disparo)
+                    let px = nave.x + p.cos(nave.theta) * 25;
+                    let py = nave.y + p.sin(nave.theta) * 25;
+                    proyectiles.push({ x: px, y: py, vx: p.cos(nave.theta)*520, vy: p.sin(nave.theta)*520, vida: 90 });
+                    ultimoDisparo = ahora;
+                }
+
+                // --- FÍSICAS NAVE ---
+                if (nave.tImpulso > 0) {
+                    nave.x += p.cos(nave.theta) * 650 * dt;
+                    nave.y += p.sin(nave.theta) * 650 * dt;
+                    nave.tImpulso -= dt;
+                }
+                envolver(nave, 25);
+
+                // --- FÍSICAS PROYECTILES ---
+                for (let i = proyectiles.length-1; i >= 0; i--) {
+                    let pr = proyectiles[i];
+                    pr.x += pr.vx * dt; pr.y += pr.vy * dt; pr.vida--;
+                    if(pr.x < 0 || pr.x > ANCHO || pr.y < 0 || pr.y > ALTO || pr.vida <= 0) proyectiles.splice(i, 1);
+                }
+
+                // --- FÍSICAS ASTEROIDES Y COLISIONES ---
+                for (let i = asteroides.length-1; i >= 0; i--) {
+                    let a = asteroides[i];
+                    a.x += a.vx * dt; a.y += a.vy * dt; a.ang += a.giro * dt;
+                    envolver(a, a.r);
+
+                    // Colisión bala-asteroide
+                    let impacto = false;
+                    for (let j = proyectiles.length-1; j >= 0; j--) {
+                        if (p.dist(proyectiles[j].x, proyectiles[j].y, a.x, a.y) <= a.r + 3) {
+                            proyectiles.splice(j, 1); impacto = true; break;
+                        }
+                    }
+                    if (impacto) {
+                        if (a.r === 45) { puntaje += 20; asteroides.push(crearAsteroide(a.x, a.y, 25), crearAsteroide(a.x, a.y, 25)); }
+                        else if (a.r === 25) { puntaje += 50; asteroides.push(crearAsteroide(a.x, a.y, 13), crearAsteroide(a.x, a.y, 13)); }
+                        else if (a.r === 13) { puntaje += 100; }
+                        asteroides.splice(i, 1);
+                    }
+                }
+
+                // Nueva oleada
+                if (asteroides.length === 0) {
+                    oleada++; asteroides = crearOleada(4 + oleada - 1);
+                }
+
+                // --- RENDERIZADO (DIBUJO) ---
+                p.background(10, 10, 25);
+                
+                // Estrellas parpadeantes
+                p.noStroke();
+                for(let e of estrellas) {
+                    let b = p.constrain(e.b + 45 * p.sin((ahora/1000) * e.parpadeo + e.fase), 40, 255);
+                    p.fill(b, b, p.min(255, b+20)); p.circle(e.x, e.y, e.r*2);
+                }
+
+                // Asteroides
+                p.stroke(180, 170, 160); p.strokeWeight(2); p.noFill();
+                for(let a of asteroides) {
+                    p.push(); p.translate(a.x, a.y); p.rotate(a.ang); p.beginShape();
+                    for(let v of a.forma) p.vertex(v.x, v.y);
+                    p.endShape(p.CLOSE); p.pop();
+                }
+
+                // Proyectiles
+                p.noStroke(); p.fill(255, 210, 80);
+                for(let pr of proyectiles) p.circle(pr.x, pr.y, 6);
+
+                // Nave Vectorial
+                p.push();
+                p.translate(nave.x, nave.y);
+                p.rotate(nave.theta + p.HALF_PI);
+                if (nave.tImpulso > 0) { // Fuego del propulsor
+                    p.stroke(80, 200, 255); p.strokeWeight(2); p.noFill();
+                    p.beginShape(); for(let v of modeloLlama) p.vertex(v[0], v[1]); p.endShape(p.CLOSE);
+                }
+                p.stroke(230, 230, 255); p.strokeWeight(2); p.noFill();
+                p.beginShape(); for(let v of modeloNave) p.vertex(v[0], v[1]); p.endShape(p.CLOSE);
+                p.pop();
+
+                // UI / HUD
+                p.fill(150, 150, 180); p.noStroke(); p.textSize(16);
+                p.text(`FPS: ${p.frameRate().toFixed(0)}   Proyectiles: ${proyectiles.length}   Puntos: ${puntaje}   Oleada: ${oleada}`, 10, 25);
+                
+                // Barra de Recarga del Impulso
+                p.text("Impulso", 140, 48);
+                p.stroke(150, 150, 180); p.strokeWeight(1); p.noFill(); p.rect(10, 36, 120, 10);
+                let carga = p.min(1.0, (ahora - nave.ultImpulso)/2500);
+                p.noStroke(); p.fill(carga >= 1.0 ? p.color(80, 200, 255) : p.color(70, 90, 110));
+                p.rect(11, 37, (120-2)*carga, 8);
+            };
+
+            function envolver(obj, margen) {
+                if(obj.x > ANCHO + margen) obj.x = -margen; else if(obj.x < -margen) obj.x = ANCHO + margen;
+                if(obj.y > ALTO + margen) obj.y = -margen; else if(obj.y < -margen) obj.y = ALTO + margen;
+            }
+        });
+    </script>
+
+    <!-- SCRIPT PARTE 3: MINI PROYECTOS P5.JS (Código minimizado intacto) -->
     <script>
         new p5((p)=>{p.setup=()=>{p.createCanvas(300,300).parent('rana-container');p.noLoop();};p.draw=()=>{p.background(220);let x=150,y=170;p.noStroke();p.fill(30,204,91);p.ellipse(x,y,200,100);p.ellipse(x-50,y-50,40,40);p.ellipse(x+50,y-50,40,40);p.fill(255);p.ellipse(x-50,y-50,30,30);p.ellipse(x+50,y-50,30,30);p.fill(0);p.ellipse(x,y+10,130,40);p.rect(x-55,y-55,10,10);p.rect(x+45,y-55,10,10);};});
         new p5((p)=>{p.setup=()=>{p.createCanvas(300,300).parent('conejo-container');p.noLoop();};p.draw=()=>{p.background(220);p.ellipse(100,70,60,120);p.ellipse(200,70,60,120);p.ellipse(150,170,150,150);p.fill(0);p.ellipse(120,150,15,15);p.ellipse(180,150,15,15);p.line(100,200,200,200);p.noFill();p.rect(135,200,15,30);p.rect(150,200,15,30);};});
@@ -266,7 +335,7 @@
         new p5((p)=>{p.setup=()=>{p.createCanvas(300,300).parent('nieve-container');p.noLoop();};p.draw=()=>{p.background(150,200,255);p.noStroke();p.fill(255);p.rect(0,250,300,50);p.ellipse(150,230,100,100);p.ellipse(150,160,70,70);p.ellipse(150,100,50,50);p.fill(0);p.ellipse(140,95,5,5);p.ellipse(160,95,5,5);p.fill(255,100,0);p.triangle(150,100,170,105,150,110);};});
         new p5((p)=>{let sunSize=30;p.setup=()=>{p.createCanvas(300,300).parent('sol-container');};p.draw=()=>{p.noStroke();p.background(82,222,240);sunSize+=2;if(sunSize>450)sunSize=30;p.fill(255,204,0);p.ellipse(150,250,sunSize,sunSize);p.fill(76,168,67);p.rect(0,250,300,100);};});
         new p5((p)=>{let leftX=110;let rightX=190;p.setup=()=>{p.createCanvas(300,300).parent('nubes-container');};p.draw=()=>{p.noStroke();p.background(135,206,235);p.fill(255,220,0);p.ellipse(150,150,80,80);p.fill(255);p.ellipse(leftX,150,80,60);p.ellipse(leftX-20,160,60,50);p.ellipse(leftX+20,160,60,50);p.ellipse(rightX,150,80,60);p.ellipse(rightX-20,160,60,50);p.ellipse(rightX+20,160,60,50);leftX-=0.5;rightX+=0.5;if(leftX<-50){leftX=110;rightX=190;}};});
-        new p5((p)=>{let xPos=0;let yPos=50;let xPos2=400;let yPos2=100;let balaX=40;let balaY=350;p.setup=()=>{p.createCanvas(400,400).parent('estrella-container');};p.draw=()=>{p.noStroke();p.background(29,40,115);p.fill(20,20,40);p.rect(30,250,80,150);p.rect(120,200,90,200);p.rect(230,280,70,120);p.rect(320,180,80,220);p.fill(100,100,100);p.rect(0,350,50,50);p.rect(20,330,40,30);p.fill(255,100,0);p.ellipse(balaX,balaY,12,12);balaX+=4;balaY-=3;p.fill(255,242,0);p.ellipse(xPos,yPos,10,10);xPos+=5;yPos+=3;p.fill(200,255,255);p.ellipse(xPos2,yPos2,8,8);xPos2-=6;yPos2+=4;if(balaX>450||xPos>450){xPos=0;yPos=50;xPos2=400;yPos2=100;balaX=40;balaY=350;}};});
+        new p5((p)=>{let xPos=0, yPos=50, xPos2=400, yPos2=100, balaX=40, balaY=350;p.setup=()=>{p.createCanvas(400,400).parent('estrella-container');};p.draw=()=>{p.noStroke();p.background(29,40,115);p.fill(20,20,40);p.rect(30,250,80,150);p.rect(120,200,90,200);p.rect(230,280,70,120);p.rect(320,180,80,220);p.fill(100,100,100);p.rect(0,350,50,50);p.rect(20,330,40,30);p.fill(255,100,0);p.ellipse(balaX,balaY,12,12);balaX+=4;balaY-=3;p.fill(255,242,0);p.ellipse(xPos,yPos,10,10);xPos+=5;yPos+=3;p.fill(200,255,255);p.ellipse(xPos2,yPos2,8,8);xPos2-=6;yPos2+=4;if(balaX>450||xPos>450){xPos=0;yPos=50;xPos2=400;yPos2=100;balaX=40;balaY=350;}};});
     </script>
 </body>
 </html>
